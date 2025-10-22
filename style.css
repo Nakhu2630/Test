@@ -1,14 +1,34 @@
+body {
+  background-color: #ffd6f6;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* ----- ENVELOPE ----- */
+.envelope-wrapper {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  z-index: 10;
+}
+
 #envelope {
   position: relative;
   width: 280px;
   height: 180px;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
-  margin: -300px auto 0 auto;
   background-color: #ff69b4;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  z-index: 11;
 }
 
+/* ----- FLAP & POCKET ----- */
 .front {
   position: absolute;
   width: 0;
@@ -37,16 +57,11 @@
   position: relative;
   background-color: #fff0f7;
   width: 90%;
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto;
   height: 90%;
   top: 5%;
   border-radius: 6px;
   box-shadow: 0 2px 26px rgba(0, 0, 0, .12);
-}
-
-.letter:after {
-  display: none;
 }
 
 .words {
@@ -56,7 +71,6 @@
   height: 14%;
   background-color: #ffe4f3;
 }
-
 .words.line1 { top: 15%; width: 20%; height: 7%; }
 .words.line2 { top: 30%; }
 .words.line3 { top: 50%; }
@@ -74,183 +88,27 @@
 }
 .close .letter {
   transform: translatey(0px);
-  transition: transform 0.4s ease, z-index 1s;
+  transition: transform 0.4s ease;
   z-index: 1;
 }
 .open .letter {
   transform: translatey(-60px);
-  transition: transform 0.4s 0.6s ease, z-index 0.6s;
+  transition: transform 0.4s 0.6s ease;
   z-index: 2;
 }
 
-.sparkles {
+/* ----- DECORATIONS ----- */
+.decorations {
   position: absolute;
-  top: 90px;
+  top: -60px;
   left: 0;
   right: 0;
-  z-index: 2;
-}
-
-.sparkle {
-  position: absolute;
-  bottom: 0;
-  font-size: 48px; 
-  opacity: 1;
-  animation: slideUp 4s linear 1, sideSway 2s ease-in-out 4 alternate;
-  animation-fill-mode: forwards;
-  animation-delay: 0.7s;
-}
-
-.sparkle:before, .sparkle:after {
-  position: absolute;
-  content: '';
-  left: 50px;
-  top: 0;
-  width: 50px;
-  height: 80px;
-  background: #ff4081;
-  border-radius: 50px 50px 0 0;
-  transform: rotate(-45deg);
-  transform-origin: 0 100%;
-}
-.sparkle:after {
-  left: 0;
-  transform: rotate(45deg);
-  transform-origin: 100% 100%;
-}
-.close .sparkle {
-  opacity: 0;
-  animation: none;
-}
-.a1 {
-  left: 20%;
-  transform: scale(0.6);
-  animation-delay: 0.7s;
-}
-.a2 {
-  left: 55%;
-  transform: scale(1);
-  animation-delay: 0.7s;
-}
-.a3 {
-  left: 10%;
-  transform: scale(0.8);
-  animation-delay: 0.7s;
-}
-
-@keyframes slideUp {
-  0% { top: 0; }
-  100% { top: -600px; }
-}
-@keyframes sideSway {
-  0% { margin-left: 0px; }
-  100% { margin-left: 50px; }
-}
-
-body {
-  background-color: #ffd6f6;
-}
-
-.envelope-wrapper {
-  height: 380px;
-}
-
-.reset {
-  text-align: center;
-}
-.reset button {
-  font-weight: 800;
-  background-color: transparent;
-  border: solid 2px #ff69b4;
-  border-radius: 4px;
-  color: #ff69b4;
-  display: inline-block;
-  font-size: 14px;
-  text-transform: uppercase;
-  margin: 5px;
-  padding: 10px;
-  min-width: 120px;
-  transition: all 0.1s linear;
-}
-.reset button:hover {
-  background-color: #ff69b4;
-  color: #fff;
-}
-
-/* Expanded Envelope */
-#envelope.open.expanded {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  height: auto;
-  max-width: 500px;
-  max-height: 90vh;
-  z-index: 1000;
-  background: transparent;
-  box-shadow: none;
-}
-
-#envelope.open.expanded .letter {
-  height: auto;
-  min-height: 300px;
   width: 100%;
-  transform: none;
-  padding: 30px;
-  box-shadow: 0 10px 50px rgba(0,0,0,0.3);
-  cursor: default;
+  height: 200px;
+  pointer-events: none;
+  z-index: 1;
 }
 
-#envelope.open.expanded .flap,
-#envelope.open.expanded .pocket {
-  display: none;
-}
-
-#envelope.open.expanded .words {
-  position: static;
-  width: auto;
-  height: auto;
-  margin-bottom: 15px;
-  padding: 10px;
-  background-color: rgba(238, 239, 240, 0.7);
-}
-
-.overlay {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.5);
-  z-index: 999;
-  display: none;
-}
-#envelope.open.expanded + .overlay {
-  display: block;
-}
-
-/* Return animation */
-#envelope.open.expanded.returning .letter {
-  animation: returnLetter 0.8s ease forwards;
-}
-@keyframes returnLetter {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(0.8) translateY(100px); opacity: 0.8; }
-  100% { transform: translateY(-60px) scale(0.5); opacity: 0; height: 140px; width: 90%; }
-}
-#envelope.open.expanded.returning {
-  animation: returnEnvelope 0.8s ease forwards;
-}
-@keyframes returnEnvelope {
-  0% { transform: translate(-50%, -50%) scale(1.5); }
-  100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
-}
-
-/* Decorations */
-.decorations {
-  position: relative;
-  width: 100%;
-  height: 400px;
-  margin-top: 50px;
-}
 .deco {
   position: absolute;
   width: 80px;
@@ -259,17 +117,29 @@ body {
   animation: floaty 4s ease-in-out infinite alternate;
   filter: drop-shadow(0 4px 8px rgba(255, 100, 200, 0.5));
 }
-.deco1 { top: 10px; left: 10%; transform: rotate(-15deg); }
-.deco2 { top: 0; right: 10%; transform: rotate(10deg); }
-.deco3 { bottom: 10px; left: 5%; transform: rotate(15deg); }
-.deco4 { bottom: 0; right: 5%; transform: rotate(-10deg); }
+
+.deco1 { top: 10px; left: 5%; transform: rotate(-15deg); }
+.deco2 { top: 10px; right: 5%; transform: rotate(10deg); }
+.deco3 { bottom: 10px; left: 3%; transform: rotate(15deg); }
+.deco4 { bottom: 10px; right: 3%; transform: rotate(-10deg); }
 
 @keyframes floaty {
   0% { transform: translateY(0) rotate(0deg); }
   100% { transform: translateY(-10px) rotate(5deg); }
 }
 
-/* ---------- Rotate overlay for mobile ---------- */
+/* ----- VIDEO / KONTEN DI BAWAH ----- */
+.content {
+  position: relative;
+  margin-top: 200px;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* ----- ROTATE OVERLAY ----- */
 #rotate-overlay {
   position: fixed;
   inset: 0;
@@ -324,50 +194,40 @@ body {
   #rotate-overlay { display: none !important; }
 }
 
-/* 🌸 Penyesuaian tampilan untuk HP posisi horizontal */
+/* ----- HP MODE LANDSCAPE ----- */
 @media screen and (max-width: 900px) and (orientation: landscape) {
   html, body {
     overflow-y: auto !important;
     overflow-x: hidden !important;
     zoom: 1 !important;
-    background-color: #ffd6f6;
   }
 
+  .decorations {
+    top: -30px;
+  }
+
+  .deco1 { left: 2%; }
+  .deco2 { right: 2%; }
+  .deco3 { left: 1%; }
+  .deco4 { right: 1%; }
+
   .envelope-wrapper {
-    position: relative !important;
     transform: scale(0.55) !important;
     transform-origin: center top !important;
-    margin: 0 auto !important;
-    z-index: 2;
+    margin-top: 0 !important;
   }
 
   #envelope {
     width: 70vw !important;
     height: auto !important;
-    margin-top: 20px !important;
   }
 
-  .letter {
-    width: 85vw !important;
-    height: auto !important;
-    min-height: 200px !important;
-  }
-
-  .message {
-    width: 85vw !important;
-    font-size: 13px !important;
-    line-height: 1.4;
+  .content {
+    margin-top: 180px;
   }
 
   iframe {
     max-width: 85vw !important;
     height: auto !important;
-    margin-top: 30px !important;
-    position: relative !important;
-    z-index: 1;
-  }
-
-  h1, h2, h3, p {
-    text-align: center !important;
   }
 }
