@@ -463,40 +463,29 @@ body {
   #rotate-overlay { display: none !important; }
 }
 
-/* 🌸 Perbaikan untuk tampilan HP landscape */
 @media screen and (max-width: 900px) and (orientation: landscape) {
   html, body {
     width: 100%;
     height: 100%;
-    overflow-y: auto; /* izinkan scroll */
+    overflow-y: auto;
     overflow-x: hidden;
-    zoom: 0.9; /* sedikit perkecil tampilan keseluruhan */
+    zoom: 0.9;
   }
 
   .envelope-wrapper {
-    transform: scale(0.75); /* perkecil isi amplop */
+    transform: scale(0.7) !important;
     transform-origin: center top;
-    margin-top: -40px;
+    margin-top: -60px !important;
   }
 
   #envelope {
-    width: 80vw; /* fleksibel mengikuti lebar layar */
-    height: auto;
+    width: 80vw !important;
+    height: auto !important;
   }
 
   .message {
-    width: 90vw; /* agar teks tidak melebar keluar */
-    font-size: 14px;
-  }
-
-  button {
-    transform: scale(0.9);
-  }
-
-  /* opsional: kalau masih ketutup, tambahkan padding bawah */
-  body::after {
-    content: "";
-    display: block;
-    height: 100px;
+    width: 90vw !important;
+    font-size: 14px !important;
   }
 }
+
