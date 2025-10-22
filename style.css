@@ -463,30 +463,40 @@ body {
   #rotate-overlay { display: none !important; }
 }
 
-/* Deteksi layar HP dalam posisi horizontal (landscape) */
+/* 🌸 Perbaikan untuk tampilan HP landscape */
 @media screen and (max-width: 900px) and (orientation: landscape) {
-  body {
-    overflow-y: auto; /* aktifkan scroll biar bisa digeser */
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto; /* izinkan scroll */
     overflow-x: hidden;
-  }
-
-  #envelope {
-    transform: scale(0.8); /* perkecil sedikit ukuran amplop */
-    margin-top: -20px; /* naikkan sedikit */
+    zoom: 0.9; /* sedikit perkecil tampilan keseluruhan */
   }
 
   .envelope-wrapper {
-    transform: scale(0.85);
-    margin-top: -30px;
+    transform: scale(0.75); /* perkecil isi amplop */
+    transform-origin: center top;
+    margin-top: -40px;
+  }
+
+  #envelope {
+    width: 80vw; /* fleksibel mengikuti lebar layar */
+    height: auto;
   }
 
   .message {
-    width: 90vw;
+    width: 90vw; /* agar teks tidak melebar keluar */
     font-size: 14px;
   }
 
   button {
     transform: scale(0.9);
   }
-}
 
+  /* opsional: kalau masih ketutup, tambahkan padding bawah */
+  body::after {
+    content: "";
+    display: block;
+    height: 100px;
+  }
+}
