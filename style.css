@@ -462,3 +462,31 @@ body {
 @media (min-width: 900px) {
   #rotate-overlay { display: none !important; }
 }
+
+/* Deteksi layar HP dalam posisi horizontal (landscape) */
+@media screen and (max-width: 900px) and (orientation: landscape) {
+  body {
+    overflow-y: auto; /* aktifkan scroll biar bisa digeser */
+    overflow-x: hidden;
+  }
+
+  #envelope {
+    transform: scale(0.8); /* perkecil sedikit ukuran amplop */
+    margin-top: -20px; /* naikkan sedikit */
+  }
+
+  .envelope-wrapper {
+    transform: scale(0.85);
+    margin-top: -30px;
+  }
+
+  .message {
+    width: 90vw;
+    font-size: 14px;
+  }
+
+  button {
+    transform: scale(0.9);
+  }
+}
+
