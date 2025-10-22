@@ -489,3 +489,45 @@ body {
   }
 }
 
+/* 🌸 Penyesuaian tampilan untuk HP posisi horizontal */
+@media screen and (max-width: 900px) and (orientation: landscape) {
+  html, body {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    zoom: 1 !important; /* reset zoom agar tidak blur */
+  }
+
+  .envelope-wrapper {
+    position: relative !important;
+    transform: scale(0.6) !important; /* perkecil amplop */
+    transform-origin: center top !important;
+    margin: 20px auto !important;
+    z-index: 2; /* di atas background tapi tidak menimpa video */
+  }
+
+  #envelope {
+    width: 70vw !important;
+    height: auto !important;
+  }
+
+  .message {
+    width: 80vw !important;
+    font-size: 13px !important;
+    line-height: 1.4;
+  }
+
+  iframe {
+    max-width: 80vw !important;
+    height: auto !important;
+    margin-top: 20px !important;
+    position: relative !important;
+    z-index: 1; /* biar di bawah amplop */
+  }
+
+  h1, h2, h3, p {
+    text-align: center !important;
+  }
+}
+
+
+
